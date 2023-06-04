@@ -15,18 +15,22 @@ const INITIAL_STATE = {
   errors: ''
 };
 class SignIn extends Component {
+
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
+
  isAuthenticated() {
     const token = localStorage.getItem('token');
     return token && token.length > 10;
   }
+
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value, errors: '' });
     console.log(this.state);
   };
+
   onSubmit = event => {
     const { email, password } = this.state;
     event.preventDefault();
@@ -46,6 +50,7 @@ class SignIn extends Component {
       self.setState({errors: "Incorrect Email/Password! Please try again"});
     });
   };
+  
   render() {
     const { email, password } = this.state;
     const isInvalid = email === '' || password === '';
@@ -66,7 +71,7 @@ class SignIn extends Component {
 
                   <Row className="form-login">
                     <Col span={24}>
-                      <Form method="post"  name="userLoginForm" onSubmit={this.onSubmit} className="login-form" layout="vertical" initialValues={{layout: "vertical"}} type="flex" justify="center" align="middle">
+                      <Form method="post" name="userLoginForm" onSubmit={this.onSubmit} className="login-form" layout="vertical" initialValues={{layout: "vertical"}} type="flex" justify="center" align="middle">
                         <div className="errorMsg">{this.state.errors}</div>
                         <FormItem label="Email address (required)">
                           <Input prefix={<MailOutlined />} placeholder="Email" name="email" value={this.state.email} onChange={this.onChange}/>

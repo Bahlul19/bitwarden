@@ -21,6 +21,7 @@ const INITIAL_STATE = {
 }
 const [messageApi, contextHolder] = "";
 class SignUp extends Component {
+
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -31,10 +32,8 @@ class SignUp extends Component {
   }
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value, errors: '' });
-    console.log(this.state);
   };
   onSubmit = event => {
-    console.log(this.state);
     const { email, name, password, confirm_password } = this.state;
     event.preventDefault();
     const headers = {
@@ -42,29 +41,28 @@ class SignUp extends Component {
     };
     var self = this;
     if(password !== confirm_password) {
-      self.setState({errors: "Master password confirmation does not match."});
+      self.setState({errors: "Master password and Confirmation password does not match."});
       self.setState({success: ""});
     } else {
       axios.post(Config.sign_up, {
         email: email,
         name: name,
-        password: password,
-        phone: "123456789"
+        password: password
+        // phone: "123456789"
       },headers)
       .then(function (response) {
-        console.log(response);
         if(response.data.success === false) {
-          self.notify("Whoops! This email already taken", true);
+          self.notify("This email already taken", true);
           self.setState({errors: response.data.message});
         }
         if(response.data.success === true) {
-          self.notify("Account created successfully");
+          self.notify("Your account created successfully");
           self.setState({success: response.data.message});
           window.location.href = '/';
         }
       }).catch(function (error) {
-        self.notify("Failed! Please try again", true);
-        self.setState({errors: "Failed! Please try again"});
+        self.notify("Can't Signup! Please try again", true);
+        self.setState({errors: "Can't Signup! Please try again"});
       });
     }
   };

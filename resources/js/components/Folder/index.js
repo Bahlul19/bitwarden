@@ -81,8 +81,7 @@ class Folder extends React.Component {
           title: 'Action',
           dataIndex: 'action',
           key: 'action',
-          render: (text, row) => {  
-            console.log(row);    
+          render: (text, row) => {   
             return(             
               <span>
                 <Tooltip placement="bottomLeft" title={"View Folder"}>
@@ -112,11 +111,9 @@ class Folder extends React.Component {
     this.setState({ isModalOpen: true, error: '', success: '' });
   };
   showDeleteModal = (id, name) => {
-    console.log(id+name);
     this.setState({ isDeleteModalOpen: true, delId:id, delName:name });
   };
   showEditModal = (id, name) => {
-    console.log(id+name);
     this.setState({ isEditModalOpen: true, delId:id, delName:name, error: '', success: '' });
   };
   handleOk = () => {
@@ -133,14 +130,11 @@ class Folder extends React.Component {
   };
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value, errors: '' });
-    console.log(this.state);
   };
   onUpdateChange = event => {
     this.setState({ [event.target.name]: event.target.value, errors: '' });
-    console.log(event.target.value);
   };
   onSubmit = event => {
-   console.log(this.state);
     const { name } = this.state;
     event.preventDefault();
     const headers = {
@@ -152,7 +146,6 @@ class Folder extends React.Component {
       user_id: localStorage.getItem('userId')
     },headers)
     .then(function (response) {
-      console.log(response);
       if(response.data.success === false) {
         self.setState({errors: response.data.message, success: ''});
       }
@@ -166,7 +159,6 @@ class Folder extends React.Component {
     })
   };
   onUpdate = event => {
-    console.log(this.state);
      const { delId, delName } = this.state;
      event.preventDefault();
      const headers = {
@@ -178,7 +170,6 @@ class Folder extends React.Component {
        id: delId
      },headers)
      .then(function (response) {
-       console.log(response);
        if(response.data.success === false) {
          self.setState({errors: response.data.message, success: ''});
        }
@@ -194,13 +185,11 @@ class Folder extends React.Component {
   getAllFolders = () => {
     axios.get(Config.get_folder + localStorage.getItem('userId'), { headers: {"authorization" : localStorage.getItem('token')} })
       .then(({ data }) => {
-        console.log(data);
         const state = { ...this.state }
         state.dataRequested = data;
         state.loadingContent = false;
         this.setState(state);
       }).catch((err) => {
-        console.log('error', err);
       })
   }
   removeFolder = () =>{
@@ -215,8 +204,6 @@ class Folder extends React.Component {
   }
   render() {
     const { dataRequested, columnRequested } = this.state;
-    console.log(dataSource);
-    console.log(dataRequested);
     const loadingContent = this.state.loadingContent;
     return (
       <div className="App">
@@ -247,7 +234,7 @@ class Folder extends React.Component {
                 </Form>
               </Modal>
 
-              <Modal title="Are you sure you want to delete this folder?" open={this.state.isDeleteModalOpen} onOk={this.removeFolder} onCancel={this.handleDeleteCancel} okText="Yes" cancelText="No" centered={true}>
+              <Modal title="Are you sure to delete this folder?" open={this.state.isDeleteModalOpen} onOk={this.removeFolder} onCancel={this.handleDeleteCancel} okText="Yes" cancelText="No" centered={true}>
               </Modal>
 
               { loadingContent ?

@@ -41,7 +41,7 @@ class FolderController extends Controller
 				$folder_status   =  Folder::where("name", $request->name)->first();
 
 				if(!is_null($folder_status)) {
-					return response()->json(["status" => 400, "success" => false, "message" => "Whoops! This folder name already taken"]);
+					return response()->json(["status" => 400, "success" => false, "message" => "Ahh! This folder name already taken"]);
 				}
 
 				$folder = new Folder;
@@ -49,10 +49,10 @@ class FolderController extends Controller
 				$folder->user_id = $data['user_id'];
                 $folder->status = 1;
 				$folder->save();
-				return response()->json(["status" => $this->status_code, "success" => true, "message" => "Folder added successfully", "data" => $folder]);
+				return response()->json(["status" => $this->status_code, "success" => true, "message" => "Folder created successfully", "data" => $folder]);
 			}
 			catch(Exception $e){
-				return response()->json(["status" => 400, "success" => false, "message" => "Failed! Please try again"]);
+				return response()->json(["status" => 400, "success" => false, "message" => "Can't Create! Please try again"]);
 			}
 		}
     }
@@ -72,7 +72,7 @@ class FolderController extends Controller
 				$folder_status   =  Folder::where("name", $request->name)->first();
 
 				if(!is_null($folder_status)) {
-					return response()->json(["status" => 400, "success" => false, "message" => "Whoops! This folder name already taken"]);
+					return response()->json(["status" => 400, "success" => false, "message" => "Ahh! This folder name already taken"]);
 				}
 
 				$result = Folder::where('id', $data['id'])->update(['name' => $data['name']]);
@@ -80,7 +80,7 @@ class FolderController extends Controller
 				return response()->json(["status" => $this->status_code, "success" => true, "message" => "Folder updated successfully", "data" => $result]);
 			}
 			catch(Exception $e){
-				return response()->json(["status" => 400, "success" => false, "message" => "Failed! Please try again"]);
+				return response()->json(["status" => 400, "success" => false, "message" => "Can't Update! Please try again"]);
 			}
 		}
     }
@@ -92,7 +92,7 @@ class FolderController extends Controller
 			$result->delete();
 			return response()->json(["status" => $this->status_code, "success" => true, "message" => "Folder deleted successfully"]);
 		} else {
-			return response()->json(["status" => 400, "success" => false, "message" => "Failed! Please try again"]);
+			return response()->json(["status" => 400, "success" => false, "message" => "Can't Delete! Please try again"]);
 		}
     }
 }

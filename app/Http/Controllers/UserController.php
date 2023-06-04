@@ -12,11 +12,11 @@ class UserController extends Controller
     private $status_code = 200;
 
     public function userSignUp(Request $request) {
+        
         $validator = Validator::make($request->all(), [
             "name" => "required",
             "email" => "required|email",
-            "password" => "required",
-            "phone" => "required"
+            "password" => "required"
         ]);
 
         if($validator->fails()) {
@@ -28,14 +28,13 @@ class UserController extends Controller
         $userDataArray = array(
             "name" => $request->name,
             "email" => $request->email,
-            "password" => md5($request->password),
-            "phone" => $request->phone
+            "password" => md5($request->password)
         );
 
         $user_status = User::where("email", $request->email)->first();
 
         if(!is_null($user_status)) {
-           return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! This email already taken"]);
+           return response()->json(["status" => "failed", "success" => false, "message" => "Ahh! This email already taken"]);
         }
 
         $user = User::create($userDataArray);

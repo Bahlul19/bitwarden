@@ -47,7 +47,7 @@ class Tools extends React.Component {
       !includeNumbers &&
       !includeSymbols
     ) {
-      this.notify('You must Select atleast one option', true)
+      this.notify('Please select atleast one option', true)
     }
     let characterList = ''
 

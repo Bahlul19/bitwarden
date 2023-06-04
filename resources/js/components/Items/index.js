@@ -263,7 +263,7 @@ class Folder extends React.Component {
             <Content  style={{ padding: 24, minHeight: this.state.windowHeight - 112 }}>
               <div type="flex" justify="center" align="middle" style={{ background: '#fff', padding: 24, minHeight: this.state.windowHeight - 112 }}>
               
-              <Modal title="ADD ITEM" open={this.state.isModalOpen} onOk={this.onSubmit} onCancel={this.handleCancel} okText="Save" centered={true}>
+              <Modal title="NEW ITEM" open={this.state.isModalOpen} onOk={this.onSubmit} onCancel={this.handleCancel} okText="Save" centered={true}>
                 <Form method="post"  name="userLoginForm" onSubmit={this.onSubmit} className="" layout="vertical" initialValues={{layout: "vertical"}} type="flex" justify="center" align="middle">
                   <div className="errorMsg">{this.state.errors}</div>
                   <div className="successMessage">{this.state.success}</div>
@@ -389,7 +389,7 @@ class Folder extends React.Component {
                 </Form>
               </Modal>
 
-              <Modal title="Are you sure you want to delete this Item?" open={this.state.isDeleteModalOpen} onOk={this.removeFolder} onCancel={this.handleDeleteCancel} okText="Delete" centered={true}>
+              <Modal title="Are you sure to delete this Item?" open={this.state.isDeleteModalOpen} onOk={this.removeFolder} onCancel={this.handleDeleteCancel} okText="Delete" centered={true}>
               </Modal>
 
               { 

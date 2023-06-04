@@ -34,7 +34,7 @@ class Home extends React.Component {
             <Sidebar collapsed={this.state.collapsed} current="home" openCurrent="home"/>
             <Content  style={{ padding: 24, minHeight: this.state.windowHeight - 112 }}>
               <div type="flex" justify="center" align="middle" style={{ background: '#fff', padding: 24, minHeight: this.state.windowHeight - 112 }}>
-                <h1 style={{ color: '#000' }}>Welcome to Password Vault</h1>
+                <h1 style={{ color: '#000' }}>Welcome to Bitwarden Online Password Vault</h1>
               </div>
             </Content>
           </Layout>
