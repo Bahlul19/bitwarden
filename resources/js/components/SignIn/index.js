@@ -28,7 +28,6 @@ class SignIn extends Component {
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value, errors: '' });
-    console.log(this.state);
   };
 
   onSubmit = event => {
@@ -47,7 +46,7 @@ class SignIn extends Component {
       localStorage.setItem('userId', response.data.data.id);
       window.location.reload();
     }).catch(function (error) {
-      self.setState({errors: "Incorrect Email/Password! Please try again"});
+      self.setState({errors: "Your account or password is incorrect! Please try again"});
     });
   };
   
@@ -59,7 +58,7 @@ class SignIn extends Component {
       <div className="wrapper">
         <div className="container">
           {isAlreadyAuthenticated ? 
-             <Navigate to="/home" replace={true} /> : 
+             <Navigate to="/folders" replace={true} /> : 
               (
                 <div type="flex" justify="center" align="middle">
                   <Row className="" style={{margin: '50px 5px 20px'}}>

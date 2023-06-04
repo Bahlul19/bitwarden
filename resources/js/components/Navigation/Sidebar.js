@@ -43,7 +43,7 @@ class Sidebar extends Component {
           </div>
           
           <Menu defaultSelectedKeys={[this.state.current]} defaultOpenKeys={[this.state.openCurrent]} theme="dark" mode="inline" inlineCollapsed={true}>
-            <Menu.Item key="home"><Link to="/"><AppstoreOutlined  /><span>Dashboard</span></Link></Menu.Item>
+            {/* <Menu.Item key="home"><Link to="/"><AppstoreOutlined  /><span>Dashboard</span></Link></Menu.Item> */}
             <Menu.Item key="folders"><Link to="/folders"><FolderOpenOutlined  /><span>Folders</span></Link></Menu.Item>
             <Menu.Item key="vault"><Link to="/vault"><UnlockOutlined  /><span>My Vault</span></Link></Menu.Item>
           </Menu>
